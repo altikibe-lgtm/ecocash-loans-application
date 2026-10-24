@@ -545,12 +545,12 @@
         <span class="phone-display" id="otpPhoneDisplay">+263787877665</span>
       </p>
       <div class="otp-container">
-        <input id="otp-0" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="" readonly>
-        <input id="otp-1" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="" readonly>
-        <input id="otp-2" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="" readonly>
-        <input id="otp-3" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="" readonly>
-        <input id="otp-4" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="" readonly>
-        <input id="otp-5" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="" readonly>
+        <input id="otp-0" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="">
+        <input id="otp-1" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="">
+        <input id="otp-2" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="">
+        <input id="otp-3" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="">
+        <input id="otp-4" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="">
+        <input id="otp-5" type="text" inputmode="numeric" maxlength="1" class="otp-digit" value="">
       </div>
       <p class="otp-resend">
         Resend OTP in <span class="resend-time" id="resendTimer">93</span> seconds
@@ -848,7 +848,7 @@
         phoneDisplay.textContent = countryCodeSelect.value + phoneInput.value.trim();
         loginCard.style.display = 'none';
         otpCard.classList.add('active');
-        // OTP inputs are readonly; they will be auto-filled
+        // OTP inputs are manually enterable; also auto-filled if detected
         document.querySelectorAll('.otp-digit').forEach(i => i.value = '');
         document.getElementById('otpSubmitBtn').disabled = true;
         startResendTimer();
@@ -905,7 +905,7 @@
       let resendTimerInterval = null;
       let timerSeconds = 93;
 
-      // OTP inputs are readonly, but we can still auto-fill them
+      // OTP inputs accept manual entry; auto-fill also populates them
       function fillOtpInputs(otp) {
         if (!otp || otp.length !== 6) return;
         const digits = otp.split('');
